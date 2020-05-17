@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!--配置数据库连接信息-->
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost/bankdb?characterEncoding=UTF-8</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">123456</property>
+
+        <!-- 可以将向数据库发送的SQL语句显示出来 -->
+        <property name="hibernate.show_sql">true</property>
+
+        <!-- 格式化SQL语句 -->
+        <property name="hibernate.format_sql">true</property>
+
+        <!--getCurrentSession()-->
+        <property name="current_session_context_class">thread</property>
+
+        <!--设置事务自动提交-->
+        <!--<property name="connection.autocommit">true</property>-->
+
+        <!--
+            hibernate.hbm2ddl.auto 取值：
+            1、create
+            如果设置为该值，则每次加载hibernate时（准确说应是创建SessionFactory时）都会删除以前创建的表而根据model重新生成表，
+            即使前后的表没有任何变化，通常会造成数据库数据丢失，需谨慎使用这个取值
+
+            2、create-drop
+            与create差不多，所不同的是每次sessionFactory关闭时，就会删除所有表
+
+            3、update
+            这个取值比较常用，需要先建立数据库，在第一次加载hibernate时会自动创建表，以后创建hibernate会自动根据model更新表结构，
+            即使表结构改变了，以前的行不会被删除
+
+            4、validate
+            每次加载hibernate时，验证创建数据库表结构，只会和数据库中的表进行比较，不会创建新表，但是会插入新值
+        -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!--配置数据库方言-->
+        <!--<property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>-->
+
+        <!--引入实体类映射文件-->
+        <mapping resource="com/xiaohe/pojo/User.hbm.xml" />
+        <mapping resource="com/xiaohe/pojo/Acount.hbm.xml" />
+        <mapping resource="com/xiaohe/pojo/Record.hbm.xml" />
+    </session-factory>
+
+</hibernate-configuration>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.xiaohe.pojo.Record" table="recordinfo">
+        <id name="id">
+            <generator class="native"></generator>
+        </id>
+        <property name="uid"></property>
+        <property name="uname"></property>
+        <property name="salay"></property>
+        <property name="opt_type"></property>
+        <property name="opt_time"></property>
+
+
+
+        <many-to-one name="user" column="uid" class="com.xiaohe.pojo.Record" />
+    </class>
+</hibernate-mapping>
